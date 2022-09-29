@@ -1,0 +1,20 @@
+//get one places 
+GET http://localhost:5000/products/
+
+###
+//create a place 
+POST http://localhost:5000/products/ 
+Content-Type: application/json
+
+{
+        "name":"Product 1",
+        "price":"1",
+        "company":"Company 1",
+        "information" : "some info",
+        "count" : "0",
+        "total" :"2"
+}
+
+###
+//delete one places 
+DELETE http://localhost:3000/products/
