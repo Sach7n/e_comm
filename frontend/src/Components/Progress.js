@@ -6,7 +6,7 @@ const Progress = (file,setFile) => {
 
       const {user,status}=useAuth(file,'http://localhost:5000/admin/')
       console.log(user)
-      console.log(status)
+
 
       
   return (

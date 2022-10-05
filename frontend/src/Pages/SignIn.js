@@ -21,7 +21,6 @@ const SignIn = props => {
         name: fullNameInputElement.current.value,
         password: passwordInputElement.current.value,
       };
-      console.log(data)
 
       if ( !(!data.name || /^\s*$/.test(data.name)) && data != null){
         setFile(data)

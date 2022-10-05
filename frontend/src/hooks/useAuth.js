@@ -4,10 +4,9 @@ const useAuth = (data,url) => {
     
     const [user, setUser] = useState(null)
     const [status, setStatus] = useState(null)
-    const items = data.file
-  
+    const items = data.file  
     console.log(data.file)
-    console.log(url)
+
     useEffect(() => {
     fetch(url, {
                 method: "POST",
@@ -21,6 +20,7 @@ const useAuth = (data,url) => {
               if(items.status == 200){
                 console.log("success",items)
                 setStatus(items.status)
+                setUser(data.file.name)
               }
               else{
                 console.log("wrong credentials",items )
@@ -30,7 +30,7 @@ const useAuth = (data,url) => {
             .catch((error) => {
               console.error('Error:', error);
             });},[items,url])
-    
+            //console.log(user)
     return { user,status };
 };
 
