@@ -1,52 +1,45 @@
 import React, { useRef, useCallback, useState } from 'react'
 import { Form, Button, Row, Col, Container } from 'react-bootstrap'
 import { Navigate, useNavigate } from 'react-router-dom';
+import { useAuth } from '../hooks/useAuth'
+import Progress from "../Components/Progress"
+
 
 const SignIn = props => {
-
+  const [file, setFile] = useState(null)
   const fullNameInputElement = useRef();
   const passwordInputElement = useRef();
-  const [res,setRes] = useState(null)
+  const formRef = useRef();
   const Navigate = useNavigate()
-  function formHandler() {
-    return (e) => {
-      e.preventDefault();
+
+
+  const formHandler = useCallback(
+
+    () => (event) => {
+      event.preventDefault();
       const data = {
-        name: fullNameInputElement.current?.value,
-        password: passwordInputElement.current?.value,
+        name: fullNameInputElement.current.value,
+        password: passwordInputElement.current.value,
       };
-  
-        fetch("http://localhost:5000/admin/", {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json'
-                    // 'Content-Type': 'application/x-www-form-urlencoded',
-                  },
-                body: JSON.stringify(data)
+      console.log(data)
 
-            }).then((data) => {
-              if(data.status == 200){
-                console.log("success",data)
-                Navigate("/admin/addProduct")
+      if ( !(!data.name || /^\s*$/.test(data.name)) && data != null){
+        setFile(data)
+       }
+      else {
+        alert("please fill form")
+      }
+      formRef.current.reset();
+    },[]
 
-              }
-              else{
-                console.log("wrong credentials",data )
-              }
-            })
-            .catch((error) => {
-              console.error('Error:', error);
-            });
-      
-    };
-  };
+  );
 
   return (
     <Container>
       <Row className='justify-content-md-center'>
         <Col xs={12} md={6}>
           <h1>Sign In</h1>
-          <Form className='form_div' onSubmit={formHandler()}>
+          <Form className='form_div' ref={formRef} onSubmit={formHandler()}>
 
 
             <Form.Group htmlFor="full_name">
@@ -69,17 +62,18 @@ const SignIn = props => {
                 placeholder=""
                 type="password"
               />
-            </Form.Group>              
-            
+            </Form.Group>
+
             <Button type='submit' className='mt-3' variant='primary'>
               Register
             </Button>
-          
+
           </Form>
         </Col>
       </Row>
-    </Container>
+      {file && <Progress file={file} />}
 
+    </Container>
   )
 }
 

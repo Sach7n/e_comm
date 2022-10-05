@@ -22,8 +22,6 @@ const App = () => {
             <Route exact path="/signIn" element={<SignIn/>} />
             <Route exact path="/cart" element={<Cart/>} />
             <Route exact path="/admin/addProduct" element={<AddProductScreen/>} />
-
-
           </Routes>
         </main>
       </Container>

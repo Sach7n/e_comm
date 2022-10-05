@@ -17,9 +17,9 @@ router.route('/').post( async (req, res) => {
     }
     try {
       if((await bcrypt.compare(req.body.password, ruser[0].Password) && (name === ruser[0].Name) )) {
-        res.send('Success')
+        res.status(200).send('Success')
       } else {
-        res.send('Not Allowed')
+        res.status(400).send('Not Allowed')
       }
     } catch {
       res.status(500).send()
