@@ -10,7 +10,7 @@ const Context = props => {
     const [products, setProducts] = useState()
     const [loading, setLoading] = useState(true)
     const [items, setIteams] = useState([]);
-
+    const[User,setUser]=useState(null)
 
     useEffect(() => {
         const fetchItems = () => {
@@ -66,6 +66,14 @@ const Context = props => {
         }
 
     }
+    const setUserMehod = User => {
+        setUser(User)
+        console.log(User)
+        return User
+
+    }
+
+
     const providerValues = {
         products,
         setProducts,
@@ -74,7 +82,7 @@ const Context = props => {
         removeItem,
         items,
         increament,
-        decreament
+        decreament,setUserMehod,User
     };
 
 

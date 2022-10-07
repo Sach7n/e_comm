@@ -7,6 +7,11 @@ const ROLE = {
 
 const userSchema = new mongoose.Schema
 ({
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: 'User',
+  },
     Name:{
         type:String,
         required:[true,"Please enter name"]

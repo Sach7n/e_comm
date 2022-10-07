@@ -1,9 +1,14 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import { Navbar, Nav, Container} from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import SearchBox from './SearchBox'
+import { ProdContext } from '../Context';
+
 
 const Navigation = props => {
+
+  const { User} = useContext(ProdContext);
+
     return (
         <header>
             <Navbar bg='dark' variant='dark' expand='lg' collapseOnSelect>
@@ -32,10 +37,6 @@ const Navigation = props => {
 
                             <LinkContainer to="/Cart">
                                 <Nav.Link>My Cart</Nav.Link>
-                            </LinkContainer>
-
-                            <LinkContainer to="/admin/addProduct">
-                                <Nav.Link>Admin</Nav.Link>
                             </LinkContainer>
                         </Nav>
 

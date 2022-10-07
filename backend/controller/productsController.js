@@ -1,6 +1,8 @@
 const product = require('../model/ProductSchema')
-
+var uuid = require('uuid');
 //middleware to find the product using id
+const user2  = {}
+
 async function getProduct (req,res,next){
     let Product1;
     try{
@@ -31,7 +33,11 @@ const getOneProduct = async(req,res) =>{
 }
 
 const createProduct = async (req,res) => {
+    const user1 = uuid.v1()
+    
+
     const Products = new product({
+            
             Name:req.body.name,
             Price:req.body.price,
             Company:req.body.company,
@@ -42,7 +48,6 @@ const createProduct = async (req,res) => {
     try {
         const newProducts = await Products.save()
         res.status(201).json(newProducts);
-        console.log(newProducts)
     } catch (err) {
         res.status(400).json({ message: err.message })
     }
