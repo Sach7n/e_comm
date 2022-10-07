@@ -12,7 +12,7 @@ const {authRole} = require('./middleware/authMiddleware')
 const {authLogin} = require('./middleware/authMiddleware')
 
 
-mongoose.connect("mongodb+srv://Sachin7:Sachmongo167@cluster0.gd7sngy.mongodb.net/e_shop?retryWrites=true&w=majority", { useNewUrlParser: true })
+mongoose.connect("DATABSE_URL_WITH_PASSWORD", { useNewUrlParser: true })
 const db = mongoose.connection
 db.on('error', (error) => console.error(error))
 db.once('open', () => console.log('Connected to Database'))
